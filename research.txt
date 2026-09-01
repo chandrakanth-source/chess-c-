@@ -1,0 +1,143 @@
+day 1: 
+1.First create tthe directory structure as Engine,backlend,frontend,tests.
+2.create the files in the Engine.
+3.Then code for the Engine/piece.h file and then piece.cpp so that it will go accordingly.
+4.Then position.h and then position.cpp.
+5.Add coordinate conversion and then add the board diaplay and basic mo=vemen to the position.cpp
+6.Add getter to it in the position.cpp and then code for the tests in PositionTest.cpp.
+
+day 2:
+1.create a move.h inthe engine for the reason to create toknow the postion ofthe board.
+2.change the postion.h with new createMove importe form the move.h.
+3.also change the postion.cpp wihtht createMove().
+4.Create the MoveTest.cpp testcase in tests folder.
+5.To run this tests g++ Tests/PositionTests.cpp Engine/Position.cpp Engine/Piece.cpp Engine/Move.cpp -o position_test.
+6.
+
+day 3:
+1.Create the MoveGeneratorTest adn moveGenerator.cpp and moveGenerator.h .
+2.The files move_generator.h and move_generator.cpp are used in game programming—most commonly in chess engines—to figure out all valid or possible actions a player can make from any given board state
+3.The Header File (move_generator.h)Declares the class and function blueprints for finding piece moves
+4.The Source File (move_generator.cpp)Contains the actual logic and code implementation for how pieces move.
+
+day 4:
+1.Today we move from: "What moves can the pieces physically make?"
+                to: "Which of those moves are actually legal in chess?"
+2.please  add the public function in the moveGenerator.h and then implemen tthat fucntions in the moveGenerator.h to the moveGeaerator,cpp. Like :findKing,etc.
+3.As,checkmate the king is main task to undergo so we need to add a fucntion findking inside the moveGenerator.cpp and then find teh pawn attacks one function and then 
+   detect the pawn attacks and then detect the knight attacks adn then the queen.hook attacks and then the the king attcks all this area dded to the moeGenerator.cpp and then check .
+4.Write a function to check whether it is a check or not to the mioveGenerator.cpp.
+5.Original position:
+e2 → e4
+        ↓
+Temporary position
+e4 contains White Pawn
+e2 becomes empty
+        ↓
+Check White King
+        ↓
+Safe → legal
+Check → illegal 
+6.Then add the specific makemove funtion in the position.h  and then code for usage for that in the position.cpp .
+7.generateMoves()
+   ↓
+isLegalMove()
+   ↓
+isInCheck()
+   ↓
+isSquareAttacked()
+Day 5 :
+             Position
+                │
+                ▼
+          MoveGenerator
+                │
+                ▼
+            GameState
+          /     |      \
+         /      |       \
+   Turn       Check    Game Over
+                         │
+                   ┌─────┴─────┐
+                   ▼           ▼
+               Checkmate    Stalemate
+2.Player is in check AND Player has no legal moves
+3.Stalestate : Player is NOT in check AND Player has no legal moves
+4.GameState
+│
+├── getSideToMove()
+├── getLegalMoves()
+├── isCheck()
+├── isCheckmate()
+├── isStalemate()
+└── isGameOver()
+5.
+day 5:
+1.First create the paly move inthe gamestate.cpp and then code the changes we need ot do .
+2.Thn code for the test files in the Tests and that fiels are turn_test.cpp an the turn_cvalidation_test.exe anthen the gamestate_test.pp please.
+3,Then run all the test cases for tat pelase.
+
+day 6:
+1.1. Castling   :King moves two squares toward a rook.
+Requirements:
+King hasn't moved
+Rook hasn't moved
+Squares between them are empty
+King isn't currently in check
+King doesn't cross an attacked square
+King doesn't land on an attacked square
+2.2. En passant :Pawn
+3. Promotion :When a pawn reaches the last rank:
+  it must become one of:Queen  Rook  Bishop  Knight
+4.So coed for he above theree rules int eh move.h and the move.cpp.
+5.Ansd also add the  move history and required fucntion tao it pelae .
+6.Then also create tetcsses like the MoveHistoryTest and the GamResultTsest an the castling test etc for m e.
+
+day 8:
+1.              Chess AI
+                 │
+        ┌────────┴────────┐
+        ▼                 ▼
+   Evaluation          Minimax
+        │                 │
+   "How good is       "Which move
+    this position?"    should I play?"
+2.The AI needs a numerical score.
+3.| Piece  |  Value |
+| ------ | -----: |
+| Pawn   |    100 |
+| Knight |    320 |
+| Bishop |    330 |
+| Rook   |    500 |
+| Queen  |    900 |
+| King   | 20,000 |
+4.Now create the AI search system :
+"Which move should I choose?" so Minimax comes in.
+Evaluation answers:  "How good is this position?"
+5.Minimax idea:Suppose White has three moves:
+  White wants:maximum score    .Best move = B
+  But Black is also intelligent.
+  White maximizes.  Black minimizes.  That's Minimax.
+6.There is an important issue: our current GameState needs a safe way to make a temporary move and then undo it.
+7.We don't want the AI to permanently modify the real game while searching:   
+AI thinks:
+e2-e4
+   ↓
+e7-e5
+   ↓
+g1-f3
+   ↓
+evaluate
+This is called make/unmake move, and it's fundamental to a chess engine.
+8.             White
+               │
+       ┌───────┼───────┐
+       ↓       ↓       ↓
+      e4      d4      Nf3
+       │       │       │
+     Black   Black   Black
+       │       │       │
+      ...     ...     ...
+      White wants the highest evaluation.
+Black wants the lowest evaluation.
+9.
